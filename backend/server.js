@@ -37,9 +37,11 @@ import dashboardRoutes from './routes/dashboard.js';
 import emergencyRoutes from './routes/emergency.js';
 import notificationsRoutes from './routes/notifications.js';
 import chatRoutes from './routes/chat.js';
-app.get('/api/health',(req,res)=>{
-  res.send(" backend working");
+
+app.get('/api/health', (req, res) => {
+  res.json({ success: true, data: { status: 'ok' }, message: 'Server is running' });
 });
+
 app.use('/api/auth', authRoutes);
 app.use('/api/symptoms', symptomsRoutes);
 app.use('/api/appointments', appointmentsRoutes);
