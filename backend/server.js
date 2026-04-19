@@ -33,6 +33,10 @@ import emergencyRoutes from './routes/emergency.js';
 import notificationsRoutes from './routes/notifications.js';
 import chatRoutes from './routes/chat.js';
 
+app.get('/api/health',(req,res)=>{
+  res.send(" backend working");
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/symptoms', symptomsRoutes);
 app.use('/api/appointments', appointmentsRoutes);
