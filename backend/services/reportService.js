@@ -3,7 +3,6 @@
 
 import fs from 'fs/promises';
 import { PDFDocument } from 'pdf-lib';
-import sharp from 'sharp';
 import Report from '../models/Report.js';
 
 /**
@@ -73,6 +72,9 @@ export async function downloadReport(reportId, requestingUserId, requestingUserR
  */
 export async function convertImageToPdf(imagePath, mimeType) {
   const imageBuffer = await fs.readFile(imagePath);
+
+  // Lazy import sharp to avoid Vercel build issues
+  const sharp = (await import('sharp')).default;
   const metadata = await sharp(imageBuffer).metadata();
   const { width, height } = metadata;
 

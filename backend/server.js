@@ -22,6 +22,11 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10mb' }));
 
+// Health check
+app.get('/api/health', (req, res) => {
+  res.json({ success: true, data: { status: 'ok' }, message: 'Server is running' });
+});
+
 // Route placeholders
 import authRoutes from './routes/auth.js';
 import symptomsRoutes from './routes/symptoms.js';
@@ -32,7 +37,9 @@ import dashboardRoutes from './routes/dashboard.js';
 import emergencyRoutes from './routes/emergency.js';
 import notificationsRoutes from './routes/notifications.js';
 import chatRoutes from './routes/chat.js';
-
+app.get('/api/health',(req,res)=>{
+  res.send(" backend working");
+});
 app.use('/api/auth', authRoutes);
 app.use('/api/symptoms', symptomsRoutes);
 app.use('/api/appointments', appointmentsRoutes);
